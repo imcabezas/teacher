@@ -1,0 +1,53 @@
+
+<form action="/submit" method="post">
+
+
+    <label for="deliverable">Deliverable:</label>
+    <input type="text" id="deliverable" name="deliverable" title="(e.g., Script, Plan lesson, Assessment)." ><br><br>
+
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" title="(e.g., Science, Programming, Maths, Arts, Literature)."><br><br>
+
+    <label for="content">Topic:</label>
+    <input type="text" id="topic" name="topic" title="(e.g., Space Exploration, C++, Waves, Leonardo Davinci, Milan Kundera)."><br><br>
+
+    <div id="advancedFeatures" style="display: none;">
+
+      <label for="format">Choose an audio voice:</label>
+      <select id="audioVoice" name="audioVoice">        
+            <option value="alloy">alloy</option>
+            <option value="echo">echo</option>
+            <option value="fable">fable</option>
+            <option value="onix">onix</option>
+            <option value="nova">nova</option>
+            <option value="shimmer">shimmer</option>        
+      </select><br><br>
+
+      <label for="model">Choose a text model:</label>
+      <select id="textModel" name="textModel">          
+          <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+          <option value="gpt-3.5-turbo-1106">gpt-3.5-turbo-1106</option>
+          <option value="gpt-3.5-turbo-0613">gpt-3.5-turbo-0613</option>
+          <option value="gpt-4">gpt-4</option>
+      </select><br><br>
+
+
+    </div>
+  <a href="#" onclick="toggleAdvancedFeatures()" class="advanced-features-link">Models Features</a>
+
+
+    <input type="submit" value="Submit">
+</form>
+
+
+
+<script>
+    function toggleAdvancedFeatures() {
+        var x = document.getElementById("advancedFeatures");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>

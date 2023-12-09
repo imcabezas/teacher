@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Teacher Assistant</title>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+<body>
+  <header>
+      <div class="container">
+          <div id="branding">
+              <h1>AI-based Teacher Assistant - Results</h1>
+          </div>
+          <nav>
+              <ul>
+                  <li class="current"><a href="/">Home</a></li>
+              </ul>
+          </nav>
+      </div>
+  </header>
+
+
+  <div class="centered-div">
+      <h1>The voice of {{topic}}</h1>
+      {{ audioPrompt }}
+  </div>
+  <div class="content-container">
+      <audio controls autoplay>
+        <source src="{{ url_for('static', filename='output.mp3') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+  </div>
+
+  <div class="content-container">
+      <h1>Proposed Material</h1>
+    {{ htmlInfo|safe }}
+  </div>
+  
+  {% include 'footer.html' %}
+</body>
+</html>

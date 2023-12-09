@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Assistant</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>AI-based Teacher Assistant</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container content">
+        <h2>Welcome to the AI-based Teacher Assistant Application</h2>
+        <p>This application is a collaborative effort developed for the Wizeline bootcamp. 
+          It is designed to facilitate educational content creation, making it easier for teachers to design and deliver effective classroom experiences. 
+          This innovative tool is the brainchild of Ivan Cabezas and LAI models, combining expertise in education and advanced AI capabilities. </p>
+
+
+       {% include 'formHome.html' %}
+
+
+    </div>
+    {% include 'footer.html' %}
+
+</body>  
+</html>
+
+
+
+
+

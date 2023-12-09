@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+header {
+    background: #50b3a2;
+    color: white;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+header ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+}
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+header #branding {
+    float: left;
+}
+header #branding h1 {
+    margin: 0;
+}
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+header .highlight, header .current a {
+    color: #e8491d;
+    font-weight: bold;
+}
+header a:hover {
+    color: #ffffff;
+    font-weight: bold;
+}
+.content {
+    padding: 20px;
+    min-height: 400px;
+}
+footer {
+    padding: 20px;
+    margin-top: 20px;
+    color: #ffffff;
+    background-color: #e8491d;
+    text-align: center;
+}
+
+.advanced-features-link {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.advanced-features-link:hover {
+    text-decoration: underline;
+}canvas
+
+.content-container {
+    margin: 20px;
+    padding: 20px;
+    border: 10px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.centered-div {
+    width: 75%;       /* Fixed width */
+    margin: 0 auto;   /* Top and bottom margins 0, left and right margins auto */
+}
+
+h1 {
+    color: #333;
+    font-family: Arial, sans-serif;
+}

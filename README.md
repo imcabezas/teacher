@@ -1,7 +1,4 @@
-Based on the context of your ChatGPT-based "Teacher Assistant" project, which uses Flask and OpenAI's GPT-3.5 model to create educational content, here's a tailored README.md file for your project:
 
-markdown
-Copy code
 # Teacher Assistant
 
 ## Project Overview
@@ -11,9 +8,10 @@ This tool generates educational content based on teachers' inputs about delivera
 
 ## Key Features
 
+- **Available online**: This project is deployed at this URL:  https://teacher.imcabezas.repl.co/
 - **Custom Content Generation**: Utilizes OpenAI's text-to-text and text-to-audio to generate educational content tailored to teachers' specific needs.
 - **Interactive Web Interface**: A usable Flask front-end where teachers can input the deliverable type, subject, and content topic.
-- **Available online**: This project is deployed at this URL:  https://teacher.imcabezas.repl.co/
+
 
 ## Installation
 

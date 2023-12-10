@@ -16,13 +16,13 @@ def submit():
     deliverable = request.form.get('deliverable')
     subject = request.form.get('subject')
     topic = request.form.get('topic')
-    model = request.form.get('textModel') 
+    textModel = request.form.get('textModel') 
     audioVoice = request.form.get('audioVoice') 
   
-    audioPrompt = format_audio_dict(deliverable, subject, topic, model, audioVoice)
+    audioPrompt = format_audio_dict(deliverable, subject, topic, textModel, audioVoice)
     audioResponse = text_audio_models(audioPrompt)
   
-    textPrompt = format_text_dict(deliverable, subject, topic, model, format="HTML")
+    textPrompt = format_text_dict(deliverable, subject, topic, textModel, format="HTML")
     htmlContent = text_text_models(textPrompt)
     
     return render_template('result.html', topic=topic, htmlInfo=htmlContent, audioPrompt = audioPrompt["input"])

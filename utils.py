@@ -10,7 +10,6 @@ api_key = os.environ['OPENAI_API_KEY']
 
 
 def text_text_models(payload):
-  # Prepare the curl command
   curl_command = [
       'curl',
       f'{text_api_url}',
@@ -18,10 +17,8 @@ def text_text_models(payload):
       '-H', f'Authorization: Bearer {api_key}',
       '-d', json.dumps(payload)
   ]
-  # Execute the curl command
   raw = subprocess.run(curl_command, capture_output=True, text=True)
   response = json.loads(raw.stdout)
-  # Return the output
   return response["choices"][0]["message"]["content"]
 
 def invoke_text_model(userPrompt):
@@ -32,9 +29,10 @@ def invoke_text_model(userPrompt):
   return text_text_models(payload)
   
 
-def format_audio_dict(topic, audioVoice):
-  input = f"Create an engaging monologue speaking on behalf of {topic}, limited to 125 words."
-  input += f"Capture the essence of {topic} in a expressive manner, suitable for text-to-speech conversion."
+def format_audio_dict(deliverable, subject, topic, audioVoice):
+  input = (f"Craft a 125-word monologue on '{topic}', tailored for '{subject}'. "
+   f"Ensure it's insightful, educational, and fitting for a '{deliverable}'. "
+   f"Focus on key concepts and themes in a clear, engaging style, suitable for text-to-speech conversion.")
   text = invoke_text_model(input)
   data = {
       "model": "tts-1-hd",
@@ -44,7 +42,6 @@ def format_audio_dict(topic, audioVoice):
   return data
 
 def text_audio_models(payload):
-  # Prepare the curl command
   curl_command = [
       'curl',
       f'{image_api_url}',
@@ -52,29 +49,23 @@ def text_audio_models(payload):
       '-H', f'Authorization: Bearer {api_key}',
       '-d', json.dumps(payload),
       '-o', './static/output.mp3'
-  ]
-  # Execute the curl command
+  ] 
   raw = subprocess.run(curl_command,  stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  #response = json.loads(raw.stdout)
-  # Return the output
   return raw
 
 
 
-
-# Function to format the dictionary based on inputs
 def format_text_dict(deliverable, subject, content, model, format="HTML"):
-    userPrompt = f"Create a {deliverable} for high school teachers specializing in {subject}, focusing on the topic: '{content}'."
-    userPrompt += " This deliverable should serve as a guide for designing engaging classroom experiences."
-    outputFormat = f"Please format the 100% of your response as {format}."
-    data = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": "You are the most advanced AI-based NLP engine acting as an expert on the user's prompt topic and as a prompt enhancer"},
-            {"role": "system", "content": "Please DO NOT include links to online resources related to the disscused topic as part of your answer."},          
-            {"role": "system", "content": "Provide an improved prompt at the end of your answer, to be used as preparation for the devised exeperience."},
-            {"role": "user", "content": userPrompt},
-            {"role": "user", "content": outputFormat}
-        ]
-    }
-    return data
+  userPrompt = (f"Develop a {deliverable} guide on '{content}' for high school {subject} teachers. "
+                f"Focus on creating engaging classroom experiences.")
+  outputFormat = f"Format the entire response in {format}."
+  data = {
+          "model": model,
+          "messages": [
+              {"role": "system", "content": "You are the most advanced AI-based NLP engine acting as an expert on the user's prompt topic and as a prompt enhancer"},
+              {"role": "system", "content": "Please DO NOT include links to online resources related to the disscused topic as part of your answer."},          
+              {"role": "system", "content": "Provide an improved prompt at the end of your answer, to be used as preparation for the devised exeperience."},
+              {"role": "user", "content": userPrompt + outputFormat }
+          ]
+  }
+  return data

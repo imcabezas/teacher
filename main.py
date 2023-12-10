@@ -19,7 +19,7 @@ def submit():
     textModel = request.form.get('textModel') 
     audioVoice = request.form.get('audioVoice') 
   
-    audioPrompt = format_audio_dict(topic,audioVoice)
+    audioPrompt = format_audio_dict(deliverable, subject, topic, audioVoice)
     audioResponse = text_audio_models(audioPrompt)
   
     textPrompt = format_text_dict(deliverable, subject, topic, textModel, format="HTML")

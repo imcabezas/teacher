@@ -17,12 +17,14 @@ def submit():
     subject = request.form.get('subject')
     topic = request.form.get('topic')
     textModel = request.form.get('textModel') 
-    audioVoice = request.form.get('audioVoice') 
-  
-    audioPrompt = format_audio_dict(deliverable, subject, topic, textModel, audioVoice)
+    audioVoice = request.form.get('audioVoice')
+    temperature = float(request.form.get('temperature')) 
+
+    
+    audioPrompt = format_audio_dict(deliverable, subject, topic, textModel, temperature, audioVoice)
     audioResponse = text_audio_models(audioPrompt)
   
-    textPrompt = format_text_dict(deliverable, subject, topic, textModel, format="HTML")
+    textPrompt = format_text_dict(deliverable, subject, topic, textModel, temperature, format="HTML")
     htmlContent = text_text_models(textPrompt)
     
     return render_template('result.html', topic=topic, htmlInfo=htmlContent, audioPrompt = audioPrompt["input"])

@@ -21,19 +21,20 @@ def text_text_models(payload):
   response = json.loads(raw.stdout)
   return response["choices"][0]["message"]["content"]
 
-def invoke_text_model(userPrompt, textModel):
+def invoke_text_model(userPrompt, textModel, temperature):
   payload = {
     "model": f"{textModel}",
+    "temperature": temperature,
     "messages": [{"role": "user", "content": userPrompt}]
-  }
+  }  
   return text_text_models(payload)
   
 
-def format_audio_dict(deliverable, subject, topic, model, audioVoice):
+def format_audio_dict(deliverable, subject, topic, model, temperature, audioVoice):
   input = (f"Craft a 125-word monologue on '{topic}', tailored for '{subject}'. "
    f"Ensure it's insightful, educational, and fitting for a '{deliverable}'. "
    f"Focus on key concepts and themes in a clear, engaging style, suitable for text-to-speech conversion.")
-  text = invoke_text_model(input, model)
+  text = invoke_text_model(input, model, temperature)
   data = {
       "model": "tts-1-hd",
       "input": text,
@@ -55,12 +56,13 @@ def text_audio_models(payload):
 
 
 
-def format_text_dict(deliverable, subject, content, model, format="HTML"):
+def format_text_dict(deliverable, subject, content, model, temperature, format="HTML"):
   userPrompt = (f"Develop a {deliverable} guide on '{content}' for high school {subject} teachers. "
                 f"Focus on creating engaging classroom experiences.")
   outputFormat = f"Format the entire response in {format}."
   data = {
           "model": model,
+          "temperature": temperature,
           "messages": [
               {"role": "system", "content": "You are the most advanced AI-based NLP engine acting as an expert on the user's prompt topic and as a prompt enhancer"},
               {"role": "system", "content": "Please DO NOT include links to online resources related to the disscused topic as part of your answer."},          

@@ -32,9 +32,10 @@
       </select><br><br>
 
  
-        
-        
-      
+        <label for="temperature">Choose a temperature value:</label>
+        <input type="range" id="temperature" name="temperature" min="0.5" max="1.5" step="0.01" value="1.0">
+        <p>Selected Temperature: <span id="selectedTemperature">1.0</span></p>
+            
 
     </div>
   <a href="#" onclick="toggleAdvancedFeatures()" class="advanced-features-link">Models Features</a>
@@ -54,4 +55,14 @@
             x.style.display = "none";
         }
     }
+</script>
+
+
+<script>
+    const rangeInput = document.getElementById('temperature');
+    const valueDisplay = document.getElementById('selectedTemperature');
+
+    rangeInput.addEventListener('input', function() {
+        valueDisplay.textContent = rangeInput.value;
+    });
 </script>

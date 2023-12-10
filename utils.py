@@ -1,5 +1,5 @@
-import subprocess
 import json
+import subprocess
 import os
 
 
@@ -21,19 +21,19 @@ def text_text_models(payload):
   response = json.loads(raw.stdout)
   return response["choices"][0]["message"]["content"]
 
-def invoke_text_model(userPrompt):
+def invoke_text_model(userPrompt, textModel):
   payload = {
-    "model": "gpt-3.5-turbo",
+    "model": f"{textModel}",
     "messages": [{"role": "user", "content": userPrompt}]
   }
   return text_text_models(payload)
   
 
-def format_audio_dict(deliverable, subject, topic, audioVoice):
+def format_audio_dict(deliverable, subject, topic, model, audioVoice):
   input = (f"Craft a 125-word monologue on '{topic}', tailored for '{subject}'. "
    f"Ensure it's insightful, educational, and fitting for a '{deliverable}'. "
    f"Focus on key concepts and themes in a clear, engaging style, suitable for text-to-speech conversion.")
-  text = invoke_text_model(input)
+  text = invoke_text_model(input, model)
   data = {
       "model": "tts-1-hd",
       "input": text,
